@@ -28,10 +28,21 @@ const people = [
   },
 ]
 
-class App extends Component {
+class app extends Component {
+  constructor(props){
+    super(props);
+
+      this.state= {
+        people: people
+    }
+}
+
   render() {
     return (
       <div className="App">
+      <form>
+        <input type="text" />
+      </form>
     {
       people.map(person =>
           <div key={person.id}>
@@ -39,7 +50,6 @@ class App extends Component {
             <h2>{person.last}</h2>
             <h3>{person.age}</h3>
           </div>
-        
       )
     }
       </div>
