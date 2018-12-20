@@ -30,7 +30,7 @@ const people = [
 
 function searchingFor(term){
     return function(x){
-       return x.first.toLowerCase().include(term.toLowerCase()) || !term;
+       return x.first.toLowerCase().includes(term.toLowerCase()) || !term;
     };
 }
 
@@ -43,10 +43,10 @@ class App extends Component {
         term: ''
     };
 
-    this.searcHandler = this.searcHandler.bind(this);
+    this.searchHandler = this.searchHandler.bind(this);
 }
 
-searcHandler(event){
+searchHandler(event){
   this.setState({
       term: event.target.value
   });
@@ -58,7 +58,7 @@ searcHandler(event){
       <div className="App">
       <form>
         <input type="text"
-            onChange={this.searcHandler}
+            onChange={this.searchHandler}
             value={term}
         />
       </form>
