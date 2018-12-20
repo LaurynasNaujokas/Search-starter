@@ -26,7 +26,13 @@ const people = [
     last: "Nielsen",
     age: 42
   },
-]
+];
+
+function searchingFor(term){
+    return function(x){
+       return x.first.toLowerCase().include(term.toLowerCase()) || !term;
+    };
+}
 
 class App extends Component {
   constructor(props){
@@ -35,7 +41,7 @@ class App extends Component {
       this.state= {
         people: people,
         term: ''
-    }
+    };
 
     this.searcHandler = this.searcHandler.bind(this);
 }
@@ -47,15 +53,17 @@ searcHandler(event){
 }
 
   render() {
+    const {term, people} = this.state;
     return (
       <div className="App">
       <form>
         <input type="text"
             onChange={this.searcHandler}
+            value={term}
         />
       </form>
     {
-      this.state.people.map(person =>
+      people.filter(searchingFor(this.state.term)).map(person =>
           <div key={person.id}>
             <h1>{person.first}</h1>
             <h2>{person.last}</h2>
