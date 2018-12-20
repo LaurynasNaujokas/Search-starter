@@ -28,23 +28,34 @@ const people = [
   },
 ]
 
-class app extends Component {
+class App extends Component {
   constructor(props){
     super(props);
 
       this.state= {
-        people: people
+        people: people,
+        term: ''
     }
+
+    this.searcHandler = this.searcHandler.bind(this);
+}
+
+searcHandler(event){
+  this.setState({
+      term: event.target.value
+  });
 }
 
   render() {
     return (
       <div className="App">
       <form>
-        <input type="text" />
+        <input type="text"
+            onChange={this.searcHandler}
+        />
       </form>
     {
-      people.map(person =>
+      this.state.people.map(person =>
           <div key={person.id}>
             <h1>{person.first}</h1>
             <h2>{person.last}</h2>
